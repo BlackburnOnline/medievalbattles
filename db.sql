@@ -1,19 +1,8 @@
-# phpMyAdmin MySQL-Dump
-# version 2.5.1
-# http://www.phpmyadmin.net/ (download page)
-#
-# Host: localhost
-# Generation Time: Jun 14, 2003 at 05:05 PM
-# Server version: 3.23.56
-# PHP Version: 4.3.2
-# Database : `medieval`
-# --------------------------------------------------------
-
 #
 # Table structure for table `barter`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 11, 2003 at 01:43 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `barter` (
@@ -26,7 +15,7 @@ CREATE TABLE `barter` (
   `method` varchar(255) NOT NULL default 'gp',
   `page` varchar(255) NOT NULL default '',
   `guild` varchar(255) NOT NULL default ''
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `barter`
@@ -38,7 +27,7 @@ CREATE TABLE `barter` (
 # Table structure for table `buildings`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:03 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `buildings` (
@@ -69,7 +58,7 @@ CREATE TABLE `buildings` (
   `Ghrs` bigint(255) NOT NULL default '0',
   `Ihrs` bigint(255) NOT NULL default '0',
   `userid` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `buildings`
@@ -82,7 +71,7 @@ CREATE TABLE `buildings` (
 # Table structure for table `emailvalidate`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:00 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `emailvalidate` (
@@ -90,7 +79,7 @@ CREATE TABLE `emailvalidate` (
   `code` varchar(50) NOT NULL default '0',
   `check` int(11) NOT NULL default '0',
   `clock` int(11) NOT NULL default '48'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `emailvalidate`
@@ -103,14 +92,14 @@ CREATE TABLE `emailvalidate` (
 # Table structure for table `empnews`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:02 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `empnews` (
   `date` varchar(255) NOT NULL default '',
   `news` blob NOT NULL,
   `yourid` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `empnews`
@@ -123,7 +112,7 @@ CREATE TABLE `empnews` (
 # Table structure for table `explore`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:00 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `explore` (
@@ -134,7 +123,7 @@ CREATE TABLE `explore` (
   `expmt` bigint(20) NOT NULL default '0',
   `landhrs` bigint(255) NOT NULL default '0',
   `mthrs` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `explore`
@@ -147,13 +136,13 @@ CREATE TABLE `explore` (
 # Table structure for table `friends`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 11, 2003 at 01:43 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `friends` (
   `useremail` varchar(200) NOT NULL default '0',
   `friendid` int(11) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `friends`
@@ -165,14 +154,14 @@ CREATE TABLE `friends` (
 # Table structure for table `game_info`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:02 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `game_info` (
   `lastset` bigint(255) NOT NULL default '0',
   `tick` varchar(255) NOT NULL default '',
   `last_comp_id` varchar(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `game_info`
@@ -185,7 +174,7 @@ INSERT INTO `game_info` VALUES (0, 'no', '998');
 # Table structure for table `guild`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:00 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `guild` (
@@ -198,7 +187,7 @@ CREATE TABLE `guild` (
   `owner` varchar(255) NOT NULL default '',
   `mem` bigint(20) NOT NULL default '0',
   `notice` varchar(255) NOT NULL default 'None'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `guild`
@@ -210,7 +199,7 @@ CREATE TABLE `guild` (
 # Table structure for table `guildmsgs`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:03 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `guildmsgs` (
@@ -222,7 +211,7 @@ CREATE TABLE `guildmsgs` (
   `message` text NOT NULL,
   `datestamp` varchar(20) NOT NULL default '',
   PRIMARY KEY  (`messageid`)
-) TYPE=MyISAM AUTO_INCREMENT=53 ;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `guildmsgs`
@@ -234,7 +223,7 @@ CREATE TABLE `guildmsgs` (
 # Table structure for table `guildnews`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:02 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `guildnews` (
@@ -243,7 +232,7 @@ CREATE TABLE `guildnews` (
   `gnid` bigint(255) NOT NULL default '0',
   `age` bigint(255) NOT NULL default '0',
   `gid` varchar(225) NOT NULL default ''
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `guildnews`
@@ -256,13 +245,13 @@ CREATE TABLE `guildnews` (
 # Table structure for table `guildrequests`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:02 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `guildrequests` (
   `applicant` varchar(255) NOT NULL default '',
   `gl_userid` varchar(255) NOT NULL default ''
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `guildrequests`
@@ -275,7 +264,7 @@ CREATE TABLE `guildrequests` (
 # Table structure for table `guildthreads`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:03 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `guildthreads` (
@@ -290,7 +279,7 @@ CREATE TABLE `guildthreads` (
   `datestamp` varchar(20) NOT NULL default '',
   `guildname` varchar(100) NOT NULL default '',
   PRIMARY KEY  (`topicid`)
-) TYPE=MyISAM AUTO_INCREMENT=38 ;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `guildthreads`
@@ -303,12 +292,12 @@ CREATE TABLE `guildthreads` (
 # Table structure for table `ip_addresses`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 11, 2003 at 01:43 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `ip_addresses` (
   `ip` varchar(255) NOT NULL default ''
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `ip_addresses`
@@ -320,7 +309,7 @@ CREATE TABLE `ip_addresses` (
 # Table structure for table `messages`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:02 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `messages` (
@@ -330,7 +319,7 @@ CREATE TABLE `messages` (
   `yourid` bigint(255) NOT NULL default '0',
   `mid` bigint(255) NOT NULL default '0',
   `age` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `messages`
@@ -343,7 +332,7 @@ CREATE TABLE `messages` (
 # Table structure for table `military`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:01 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `military` (
@@ -442,7 +431,7 @@ CREATE TABLE `military` (
   `dbcatapult` bigint(255) NOT NULL default '0',
   `dbcatapult2` bigint(255) NOT NULL default '0',
   `dbcatapult3` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `military`
@@ -455,7 +444,7 @@ CREATE TABLE `military` (
 # Table structure for table `research`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:00 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `research` (
@@ -490,7 +479,7 @@ CREATE TABLE `research` (
   `r12pts` bigint(255) NOT NULL default '0',
   `r13pts` bigint(255) NOT NULL default '0',
   `r14pts` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `research`
@@ -503,7 +492,7 @@ CREATE TABLE `research` (
 # Table structure for table `returntbl`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 04:47 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `returntbl` (
@@ -532,7 +521,7 @@ CREATE TABLE `returntbl` (
   `time4` bigint(255) NOT NULL default '0',
   `dogs` bigint(255) NOT NULL default '0',
   `dogtime` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `returntbl`
@@ -545,7 +534,7 @@ CREATE TABLE `returntbl` (
 # Table structure for table `setforums`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:04 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `setforums` (
@@ -559,7 +548,7 @@ CREATE TABLE `setforums` (
   `message` blob NOT NULL,
   `datestamp` varchar(20) NOT NULL default '',
   PRIMARY KEY  (`topicid`)
-) TYPE=MyISAM AUTO_INCREMENT=28 ;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `setforums`
@@ -572,7 +561,7 @@ CREATE TABLE `setforums` (
 # Table structure for table `setforumsmsgs`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:04 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `setforumsmsgs` (
@@ -584,7 +573,7 @@ CREATE TABLE `setforumsmsgs` (
   `message` text NOT NULL,
   `datestamp` varchar(20) NOT NULL default '',
   PRIMARY KEY  (`messageid`)
-) TYPE=MyISAM AUTO_INCREMENT=26 ;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `setforumsmsgs`
@@ -597,7 +586,7 @@ CREATE TABLE `setforumsmsgs` (
 # Table structure for table `setnews`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:00 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `setnews` (
@@ -606,7 +595,7 @@ CREATE TABLE `setnews` (
   `setid` bigint(255) NOT NULL default '0',
   `sid` bigint(255) NOT NULL default '0',
   `age` bigint(255) NOT NULL default '0'
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `setnews`
@@ -619,7 +608,7 @@ CREATE TABLE `setnews` (
 # Table structure for table `settlement`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:00 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `settlement` (
@@ -630,11 +619,13 @@ CREATE TABLE `settlement` (
   `setid` bigint(255) NOT NULL auto_increment,
   `setstrength` bigint(255) NOT NULL default '0',
   PRIMARY KEY  (`setid`)
-) TYPE=MyISAM AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM;
 
 #
-# Dumping data for table `settlement`
+# Insert data for table `settlement`
 #
+
+INSERT INTO settlement () VALUES (), (), (), (), (), (), (), (), (), ();
 
 
 # --------------------------------------------------------
@@ -643,7 +634,7 @@ CREATE TABLE `settlement` (
 # Table structure for table `user`
 #
 # Creation: Jun 11, 2003 at 01:43 PM
-# Last update: Jun 14, 2003 at 05:04 PM
+# Last update: Apr 27, 2015 at 10:24 AM
 #
 
 CREATE TABLE `user` (
@@ -682,7 +673,7 @@ CREATE TABLE `user` (
   `current_comp_id` varchar(255) NOT NULL default '',
   `signup_comp_id` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`userid`)
-) TYPE=MyISAM AUTO_INCREMENT=147 ;
+) ENGINE=MyISAM;
 
 #
 # Dumping data for table `user`

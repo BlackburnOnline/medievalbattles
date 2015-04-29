@@ -10,7 +10,7 @@ $data = "
 						<center><b>Sign Up</b></center>
 						<hr color='#660000' width='45%'>
 							<table width='100%'>
-<form type='post' action='checksignup.php'>
+							<form method='post' action='checksignup.php'>
 								<tr><td>Email Address:</td><td><input type='text' name='email' size='30' maxlength='50'></td></tr>
 								<tr><td>Confirm Email:</td><td><input type='text' name='cemail' size='30' maxlength='50'></td></tr>
 								<tr><td>Password:</td><td><input type='password' name='pw' size='30' maxlength='15'></td></tr>
@@ -34,7 +34,7 @@ $data = "
 										<option value='Fighter'>Fighter</option>
 										<option value='Insurrectionist'>Insurrectionist</option>
 										<option value='Mage'>Mage</option>
-										<option value='Ranger'>Ranger</option> 
+										<option value='Ranger'>Ranger</option>
 										<option value='Savant'>Savant</option>
 										<option value='Warlock'>Warlock</option>
 									</select></td></tr>

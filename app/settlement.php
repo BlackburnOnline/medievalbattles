@@ -1,21 +1,25 @@
-<?php include("include/igtop.php");?>
+<?php
+	include("include/igtop.php");
+	$change = $_GET['change'];
+	$snum = $_GET['snum'];
+?>
 
 
 <form method="post" action="settlement.php">
-<center>			  
-<?
+<center>
+<?php
 $maxset0 = mysql_db_query($dbnam, "SELECT max(setid) AS maxset FROM settlement");
-	$maxset = mysql_result($maxset0,"maxset");
+$maxset = mysql_result($maxset0, 0, "maxset");
 
-if($snum != "")	 {	$csnum=$snum-1;	}
+if($snum != "")	 {	$csnum = $snum - 1;	}
 
-echo"<a href=settlement.php?change=1&snum=$csnum><-- &nbsp; </a>"; 
+echo"<a href=settlement.php?change=1&snum=$csnum><-- &nbsp; </a>";
 echo"<font class=red>|</font> <a href=settlement.php?change=1&snum=$setid>Home</a> <font class=red>|</font>";
 $nnum = rand(1,$maxset);
 echo" <a href=settlement.php?change=1&snum=$nnum>Random</a> <font class=red>|</font>";
 
 if($snum != "")	 {	$csnum=$snum+1;	}
-echo"<a href=settlement.php?change=1&snum=$csnum>&nbsp; --></a>"; 
+echo"<a href=settlement.php?change=1&snum=$csnum>&nbsp; --></a>";
 ?>
 <br><br>
 <b class=reg><font class=red>View Settlement:</font></b> <input type="number" name="snum" size="3" maxlength="2">
@@ -24,14 +28,14 @@ echo"<a href=settlement.php?change=1&snum=$csnum>&nbsp; --></a>";
 <br><br>
 </center>
 </form>
-	
+
 <?php
 if (!IsSet($change))	{
-	include("include/S_SET.php"); 
+	include("include/S_SET.php");
 }
 else	{
-	
-	if($snum < 1 OR $snum > $maxset)	 {
+
+	if($snum < 1 || $snum > $maxset)	 {
 		echo"<center>Settlement $snum does not exist.</center>";
 		die();
 	}
@@ -39,11 +43,11 @@ else	{
 	if($snum != "")	 {	$N_NUM = $snum;	}
 	if($snum == "")	{	$N_NUM = $csnum;	}
 
-	mysql_query("UPDATE user SET csnum='$N_NUM' WHERE email='$email'");	
+	mysql_query("UPDATE user SET csnum='$N_NUM' WHERE email='$email'");
 
 	include("include/S_SET.php");
 }
- 
+
 ?>
 </TD>
 </TR>

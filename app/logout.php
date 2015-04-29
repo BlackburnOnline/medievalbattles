@@ -2,13 +2,13 @@
 
 include("include/connect.php");
 
-session_register('email');
-session_register('pw');
+$email = $_SESSION['email'];
+$pw = $_SESSION['pw'];
 
 mysql_query("UPDATE user SET online='0' WHERE email='$email' AND pw='$pw'");
 
-session_unset('email');
-session_unset('pw');
+unset($_SESSION['email']);
+unset($_SESSION['pw']);
 
 echo "You have successfully logged out. <a href=index.php>Click here</a> to log back in.";
 

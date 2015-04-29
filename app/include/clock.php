@@ -1,5 +1,5 @@
 <?
-	$clock = date("m/d/y, H:ia");
+	$clock = date("n/j/y, g:ia");
 ?>
 
 

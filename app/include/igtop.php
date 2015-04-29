@@ -1,10 +1,11 @@
 <?php
+session_start();
 
-session_register('login');
-session_register('email');
-session_register('pw');
+$login = $_SESSION['login'];
+$email = $_SESSION['email'];
+$pw = $_SESSION['pw'];
 
-function callback($buffer) 
+function callback($buffer)
 {
 	return (ereg_replace("nothing", "nothing", $buffer));
 }
@@ -17,7 +18,7 @@ include("functions.php");
 //	$version = mysql_result($version_query, "version");
 ?>
 <html>
-<head> 
+<head>
 <title>Medieval Battles .:::. v6: Kupo Remix Edition</title>
 	<link rel=stylesheet type="text/css" href="css/ingame.css">
 </head>
@@ -40,7 +41,7 @@ include("functions.php");
 	 <td class=top width=20%><b class=rtop><font class=red>Experience: </font></b><? echo "$exp"; ?></font></td>
 	</table></td></table></td></table></td></table>
 </TD>
-</TR>  
+</TR>
 <TR valign="top">
  <TD width="19%">
 	<?php
@@ -51,26 +52,26 @@ include("functions.php");
 
 <div align=center><font class=yellow size=2px>There are going to be bugs obviously as this is deprecated code. If you come across a bug, go ahead and report it to <a href="mailto:support@decoymedia.com?subject=v6+Bug">support@decoymedia.com</a> and we'll see what we can do to fix it. Don't get your hopes up, however.</font></div><br>
 
-<?  
+<?
 // safe mode notice
-if($safemode > 0)	{	
-	echo"<div align=center><font class=blue><b>You are in Safe Mode for $safemode more ticks</b></font></div>";	 
-} 
+if($safemode > 0)	{
+	echo"<div align=center><font class=blue><b>You are in Safe Mode for $safemode more ticks</b></font></div>";
+}
 
 // are ticks running?
-	$tickk = mysql_db_query($dbnam, "SELECT tick FROM game_info");
-		$tick = mysql_result($tickk, "tick");
-if($tick == yes)		{	
-	echo"<font class=yellow size=4px><center><br>Tick in progress.</center>";	 
-	die();	
+$tickk = mysql_db_query($dbnam, "SELECT tick FROM game_info");
+$tick = mysql_result($tickk, "tick");
+if($tick == yes)		{
+	echo"<font class=yellow size=4px><center><br>Tick in progress.</center>";
+	die();
 }
 
 //	is their account activated?
 if($validate_checker != 2)	{
-	echo"<div align=center><font class=yellow size=4px><br>You must activate your account.</font></div>";	
-	echo"<div align=center><font class=yellow size=2px><a href=activate_code.php>Resend activation code.</a></font></div>";	
+	echo"<div align=center><font class=yellow size=4px><br>You must activate your account. $validate_checker</font></div>";
+	echo"<div align=center><font class=yellow size=2px><a href=activate_code.php>Resend activation code.</a></font></div>";
 	die();
 }
 
 echo "<br><br>";
-?>	
+?>

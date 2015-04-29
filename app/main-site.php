@@ -1,4 +1,4 @@
-<?
+<?php
 $data = "
 <table width=100% border=1 bordercolor=#990000 cellspacing=3 cellpadding=8>
 	<tr>

@@ -1,35 +1,30 @@
 <?php
 
+session_start();
+
 function callback($buffer) {
   return (ereg_replace("nothing", "nothing", $buffer));
 }
 ob_start("callback");
 
-$pw = md5($pw);
-session_register('login');
-session_register('email');
-session_register('pw');
+$email = $_POST['email'];
+$pw = md5($_POST['pw']);
+$login = $_POST['login'];
 
 include("include/connect.php");
 include("include/clock.php");
 
 $uename = @mysql_db_query($dbnam, "SELECT ename FROM user WHERE email='$email' AND pw='$pw'");
 $ename = @mysql_result($uename,"ename");
-	
+
 // check user
 $query = "SELECT pw FROM user WHERE email='$email'";
 $result = mysql_db_query($dbnam, $query);
 $pwcheck = mysql_fetch_array($result);
-if($pwcheck[0] == $pw)	{
+if ($pwcheck[0] == $pw)	{
 
 	// insert ip address into db
-	function gethostname()		{
-		$ipaddress = getenv('REMOTE_ADDR');
-		if (!$ipaddress) { $ipaddress = getenv('REMOTE_ADDR'); }
-		$ipaddress = @GetHostByAddr($ipaddress);
-		return $ipaddress;
-	}
-	$ipaddress = gethostname(); 
+	$ipaddress = $_SERVER["REMOTE_ADDR"];
 	mysql_query("UPDATE user SET ip='$ipaddress' WHERE ename='$ename'");
 	mysql_query("UPDATE user SET countdown='336' WHERE email='$email' AND pw='$pw'");
 	mysql_query("UPDATE user SET lastlogin='$clock' WHERE ename='$ename'");
@@ -40,16 +35,17 @@ if($pwcheck[0] == $pw)	{
 		$set = mysql_result($user_set_query, "set");
 
 	mysql_query("UPDATE user SET csnum='$set' WHERE email='$email'");
-	session_unregister('bad');
+	unset($_SESSION['bad']);
 	$login = 1;
-	session_register('login');
+	$_SESSION['login'] = $login;
+	$_SESSION['email'] = $email;
+	$_SESSION['pw'] = $pw;
     header("Location: main.php?pageid=news");
 	exit;
-}
-else	{
-	session_unregister('login');
-	session_unregister('email');
-	session_unregister('pw');
+} else {
+	unset($_SESSION['login']);
+	unset($_SESSION['email']);
+	unset($_SESSION['pw']);
 	echo "Your email or password is incorrect.<br>";
 	echo "<a href=index.php>Login again.</a>";
 	die();
@@ -58,4 +54,4 @@ else	{
 // close buffer
 ob_end_flush();
 
-?>	
+?>
