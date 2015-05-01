@@ -353,6 +353,7 @@ CREATE TABLE `military` (
   `explorers` bigint(255) NOT NULL default '0',
   `scientists` bigint(255) NOT NULL default '0',
   `thieves` bigint(255) NOT NULL default '0',
+  `sages` bigint(255) NOT NULL default '0',
   `recruits` bigint(255) NOT NULL default '0',
   `maxciv` bigint(255) NOT NULL default '0',
   `userid` bigint(255) NOT NULL default '0',
@@ -422,6 +423,7 @@ CREATE TABLE `military` (
   `archdef` bigint(255) NOT NULL default '0',
   `dbexplorer` bigint(255) NOT NULL default '0',
   `dbthief` bigint(255) NOT NULL default '0',
+  `dbsage` bigint(255) NOT NULL default '0',
   `dbscientist` bigint(255) NOT NULL default '0',
   `suicide` bigint(255) NOT NULL default '0',
   `dbsuicide` bigint(255) NOT NULL default '0',
@@ -430,7 +432,11 @@ CREATE TABLE `military` (
   `catapult` bigint(255) NOT NULL default '0',
   `dbcatapult` bigint(255) NOT NULL default '0',
   `dbcatapult2` bigint(255) NOT NULL default '0',
-  `dbcatapult3` bigint(255) NOT NULL default '0'
+  `dbcatapult3` bigint(255) NOT NULL default '0',
+  `golem` bigint(255) NOT NULL default '0',
+  `dbgolem` bigint(255) NOT NULL default '0',
+  `irongolem` bigint(255) NOT NULL default '0'
+  `dbirongolem` bigint(255) NOT NULL default '0'
 ) ENGINE=MyISAM;
 
 #

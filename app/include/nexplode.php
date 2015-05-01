@@ -1,4 +1,4 @@
-<?
+<?php
 //donate
 $donateg = implode("", explode(",", $donateg));
 $donatei = implode("", explode(",", $donatei));

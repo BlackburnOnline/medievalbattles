@@ -1,5 +1,5 @@
-<?
-	$clock = date("n/j/y, g:ia");
+<?php
+  $clock = date("n/j/y, g:ia");
 ?>
 
 
