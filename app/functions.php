@@ -12,46 +12,46 @@ $E_Check = mysqli_fetch_array($EMAIL_RESULT);
 if($login == 1 && $pw != "" && $email !="") {
 
 	$uuserid = $db->query("SELECT userid FROM user WHERE email = '$email' AND pw = '$pw'");
-	$userid = mysqli_field_seek($uuserid, 0, "userid");
+	$userid = mysqli_field_seek($uuserid, 0);
 
-// account validation
-$validate_query = "SELECT * FROM emailvalidate WHERE userid='$userid'";
-$validate_result = $db->query($validate_query);
-$validate = mysqli_fetch_array($validate_result);
+	// account validation
+	$validate_query = "SELECT * FROM emailvalidate WHERE userid='$userid'";
+	$validate_result = $db->query($validate_query);
+	$validate = mysqli_fetch_array($validate_result);
 
 	$code = $validate['code'];
 	$validate_checker = $validate['check'];
 	$validate_clock = $validate['clock'];
 
-// select all armors
-$armor_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$armor_result = $db->query($armor_query);
-$armor = mysqli_fetch_array($armor_result);
+	// select all armors
+	$armor_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
+	$armor_result = $db->query($armor_query);
+	$armor = mysqli_fetch_array($armor_result);
 
-// select warrior weapons
-$war_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$war_weapon_result = $db->query($war_weapon_query);
-$warweapon = mysqli_fetch_array($war_weapon_result);
+	// select warrior weapons
+	$war_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
+	$war_weapon_result = $db->query($war_weapon_query);
+	$warweapon = mysqli_fetch_array($war_weapon_result);
 
-// select priest weapons
-$pri_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$pri_weapon_result = $db->query($pri_weapon_query);
-$priweapon = mysqli_fetch_array($pri_weapon_result);
+	// select priest weapons
+	$pri_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
+	$pri_weapon_result = $db->query($pri_weapon_query);
+	$priweapon = mysqli_fetch_array($pri_weapon_result);
 
-// select archer weapons
-$arch_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$arch_weapon_result = $db->query($arch_weapon_query);
-$archweapon = mysqli_fetch_array($arch_weapon_result);
+	// select archer weapons
+	$arch_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
+	$arch_weapon_result = $db->query($arch_weapon_query);
+	$archweapon = mysqli_fetch_array($arch_weapon_result);
 
-// select research items
-$research_query = "SELECT * FROM research WHERE email='$email' AND pw= '$pw'";
-$res_query = $db->query($research_query) or die("Error: " . mysql_error());
-$res = mysqli_fetch_array($res_query);
+	// select research items
+	$research_query = "SELECT * FROM research WHERE email='$email' AND pw= '$pw'";
+	$res_query = $db->query($research_query) or die("Error: " . mysql_error());
+	$res = mysqli_fetch_array($res_query);
 
-// select user items
-$user_query = "SELECT * FROM user WHERE email='$email' AND pw= '$pw'";
-$user_query = $db->query($user_query) or die("Error: " . mysql_error());
-$user = mysqli_fetch_array($user_query);
+	// select user items
+	$user_query = "SELECT * FROM user WHERE email='$email' AND pw= '$pw'";
+	$user_query = $db->query($user_query) or die("Error: " . mysql_error());
+	$user = mysqli_fetch_array($user_query);
 
 	$setid = $user['setid'];
 	$gp = $user['gp'];

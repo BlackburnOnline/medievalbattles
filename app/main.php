@@ -1,7 +1,7 @@
 <?php
 include("include/igtop.php");
 
-$pageId = $_GET['pageId'];
+$pageid = $_GET['pageid'];
 
 $set_notice_query = $db->query("SELECT setnotice FROM settlement WHERE setid='$setid'");
   $setnotice = mysqli_fetch_array($set_notice_query);
@@ -58,8 +58,8 @@ echo "        </tr>
 <br><br>
 <?php
 // are they a guild leader?
-$guild_leader_query = mysql_db_query($dbnam, "SELECT owner FROM guild WHERE owner='$userid'");
-  $GL = mysql_fetch_array($guild_leader_query);
+$guild_leader_query = $db->query("SELECT owner FROM guild WHERE owner='$userid'");
+  $GL = mysqli_fetch_array($guild_leader_query);
 
 echo "<div align=center>
   <b>&nbsp;[&nbsp;<a href=main.php?pageid=news>Empire News</a>&nbsp;]&nbsp;</b>";
@@ -69,15 +69,16 @@ if($GL[0] == $userid)   { echo "<b>&nbsp;[&nbsp;<a href=guildconfig.php>Guild Ma
 echo "</b></div><br><br>";
 
 if ($pageid == 'news')  {
-  $empnews_sel = mysql_db_query($dbnam, "SELECT count(yourid) FROM empnews WHERE yourid='$userid'") or die(mysql_error());
-  $emp_sel = mysql_result($empnews_sel, 0, "emp_sel");
+  $empnews_sel = $db->query("SELECT count(yourid) FROM empnews WHERE yourid='$userid'") or die(mysql_error());
+  $emp_sel = mysqli_field_seek($empnews_sel, 0);
+
 
   if($emp_sel == 0 OR $emp_sel == "") {
     echo"<div align=center><font class=yellow>You do not have any news to display.</font></div>";
     die();
   }
 
-  mysql_query("UPDATE user SET nno='0' WHERE email='$email' AND pw='$pw'");
+  $db->query("UPDATE user SET nno='0' WHERE email='$email' AND pw='$pw'");
 
 echo "
     <table border=0 bordercolor=#404040 width=80% align=center cellspacing=1>
@@ -88,8 +89,9 @@ echo "
         <td class=main2><b class=reg>News</b></td>";
 
   $query_string = "SELECT `date`, news FROM empnews WHERE yourid='$userid' ORDER BY `date` DESC";
-  $result_id = mysql_query($query_string, $var);
-  while ($row = mysql_fetch_row($result_id))  {
+  $result_id = $db->query($query_string);
+
+  while ($row = mysqli_fetch_row($result_id))  {
     echo "
       <tr align=left valign=top>
         <td bgcolor=404040>$row[0]</td>

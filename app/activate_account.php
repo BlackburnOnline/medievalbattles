@@ -1,4 +1,3 @@
-<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
 <title>Medieval Battles</title>
@@ -15,7 +14,7 @@
 			<table>
 				<tr>
 					<td colspan=2 align=center>
-						<?	 
+						<?php
 							include("include/clock.php");
 							echo $clock;
 						?>
@@ -61,26 +60,6 @@
 						</table>
 					</td>
 				</tr>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-				<tr>
-					<td bgcolor="#000000" align="center">
-						<table>
-							<tr>
-								<td>
-									<input type="hidden" name="cmd" value="_xclick">
-									<input type="hidden" name="business" value="mako@medievalbattles.com">
-									<input type="hidden" name="item_name" value="Medieval Battles">
-									<input type="hidden" name="no_note" value="1">
-									<input type="hidden" name="currency_code" value="USD">
-									<input type="hidden" name="tax" value="0">
-									<input type="image" src="https://www.paypal.com/images/x-click-but21.gif" border="0" name="submit" alt="Help us out by donating!">
-								</center>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-</form>
 			</table>
 		<td>
 		<td valign="top">
@@ -91,24 +70,23 @@
 							<tr>
 								<td align=center>
 									<table width=100%>
-<?
-if(!IsSet($activate))	{
+<?php
+	if(!IsSet($_GET['activate']))	{
+		echo "not activated";
+	}	else	{
+		include("include/connect.php");
 
-}
-else	{	
-	include("include/connect.php");
+		$validate_result = $db->query("SELECT userid, code, check FROM emailvalidate WHERE userid='$act_userid'");
+		$validate = mysqli_fetch_array($validate_result);
 
-	$validate_result = mysql_db_query($dbnam, "SELECT userid, code, check FROM emailvalidate WHERE userid='$act_userid'");
-		$validate = mysql_fetch_array($validate_result);
-
-	if($act_code != $validate[1])	{
-		echo "<center><b>Validation code is incorrect.</b></center><br>";
+		if($act_code != $validate[1])	{
+			echo "<center><b>Validation code is incorrect.</b></center><br>";
+		}
+		else	{
+			$db->query("UPDATE emailvalidate SET check='2' WHERE userid='$act_userid' AND code='$act_code'");
+			echo "<center><b>Your account has been activated!</b></center>";
+		}
 	}
-	else	{
-		mysql_query("UPDATE emailvalidate SET check='2' WHERE userid='$act_userid' AND code='$act_code'");
-		echo "<center><b>Your account has been activated!</b></center>";
-	}
-}
 ?>
 									</table>
 								</td>
@@ -121,6 +99,6 @@ else	{
 	</tr>
 </table>
 <br>
-<center><font face=tahoma size=2>Copyright © 2003 Medieval Battles</font></center>
+<center><font face=tahoma size=2>Copyright &copy; <?php echo date("Y"); ?> Medieval Battles</font></center>
 </body>
 </html>
