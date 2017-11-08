@@ -435,7 +435,7 @@ CREATE TABLE `military` (
   `dbcatapult3` bigint(255) NOT NULL default '0',
   `golem` bigint(255) NOT NULL default '0',
   `dbgolem` bigint(255) NOT NULL default '0',
-  `irongolem` bigint(255) NOT NULL default '0'
+  `irongolem` bigint(255) NOT NULL default '0',
   `dbirongolem` bigint(255) NOT NULL default '0'
 ) ENGINE=MyISAM;
 

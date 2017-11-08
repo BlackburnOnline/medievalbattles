@@ -3,21 +3,20 @@
 if (!$computer_id || $computer_id == "")  {
   include("include/connect.php");
 
-  $query_get = mysql_db_query($dbnam, "SELECT last_comp_id FROM game_info");
-  $last_id = mysql_fetch_array($query_get);
+  $query_get = mysqli_query("SELECT last_comp_id FROM game_info");
+  $last_id = mysqli_fetch_array($query_get);
 
   $id = $last_id[last_comp_id] + 1;
 
   setcookie('computer_id', "$id", '9999999999999999999');
 
-  mysql_query("UPDATE game_info SET last_comp_id='$id'");
+  mysqli_query("UPDATE game_info SET last_comp_id='$id'");
 }
 ?>
-<!doctype html public "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-<title>Medieval Battles</title>
-<link rel=stylesheet type="text/css" href="css/main-site.css">
+  <title>Medieval Battles</title>
+  <link rel=stylesheet type="text/css" href="css/main-site.css">
 </head>
 
 <body>

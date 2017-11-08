@@ -6,18 +6,18 @@ $email = $_SESSION['email'];
 $pw = $_SESSION['pw'];
 
 // check and make sure email exists
-$EMAIL_RESULT = mysql_db_query($dbnam, "SELECT email FROM user WHERE email='$email' AND pw='$pw'");
-$E_Check = mysql_fetch_array($EMAIL_RESULT);
+$EMAIL_RESULT = $db->query("SELECT email FROM user WHERE email='$email' AND pw='$pw'");
+$E_Check = mysqli_fetch_array($EMAIL_RESULT);
 
 if($login == 1 && $pw != "" && $email !="") {
 
-	$uuserid = mysql_db_query($dbnam, "SELECT userid FROM user WHERE email = '$email' AND pw = '$pw'");
-	$userid = mysql_result($uuserid, 0, "userid");
+	$uuserid = $db->query("SELECT userid FROM user WHERE email = '$email' AND pw = '$pw'");
+	$userid = mysqli_field_seek($uuserid, 0, "userid");
 
 // account validation
 $validate_query = "SELECT * FROM emailvalidate WHERE userid='$userid'";
-$validate_result = mysql_db_query($dbnam, $validate_query);
-$validate = mysql_fetch_array($validate_result);
+$validate_result = $db->query($validate_query);
+$validate = mysqli_fetch_array($validate_result);
 
 	$code = $validate['code'];
 	$validate_checker = $validate['check'];
@@ -25,33 +25,33 @@ $validate = mysql_fetch_array($validate_result);
 
 // select all armors
 $armor_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$armor_result = mysql_db_query($dbnam, $armor_query);
-$armor = mysql_fetch_array($armor_result);
+$armor_result = $db->query($armor_query);
+$armor = mysqli_fetch_array($armor_result);
 
 // select warrior weapons
 $war_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$war_weapon_result = mysql_db_query($dbnam, $war_weapon_query);
-$warweapon = mysql_fetch_array($war_weapon_result);
+$war_weapon_result = $db->query($war_weapon_query);
+$warweapon = mysqli_fetch_array($war_weapon_result);
 
 // select priest weapons
 $pri_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$pri_weapon_result = mysql_db_query($dbnam, $pri_weapon_query);
-$priweapon = mysql_fetch_array($pri_weapon_result);
+$pri_weapon_result = $db->query($pri_weapon_query);
+$priweapon = mysqli_fetch_array($pri_weapon_result);
 
 // select archer weapons
 $arch_weapon_query = "SELECT * FROM military WHERE email='$email' AND pw='$pw'";
-$arch_weapon_result = mysql_db_query($dbnam, $arch_weapon_query);
-$archweapon = mysql_fetch_array($arch_weapon_result);
+$arch_weapon_result = $db->query($arch_weapon_query);
+$archweapon = mysqli_fetch_array($arch_weapon_result);
 
 // select research items
 $research_query = "SELECT * FROM research WHERE email='$email' AND pw= '$pw'";
-$res_query = mysql_db_query($dbnam, $research_query) or die("Error: " . mysql_error());
-$res = mysql_fetch_array($res_query);
+$res_query = $db->query($research_query) or die("Error: " . mysql_error());
+$res = mysqli_fetch_array($res_query);
 
 // select user items
 $user_query = "SELECT * FROM user WHERE email='$email' AND pw= '$pw'";
-$user_query = mysql_db_query($dbnam, $user_query) or die("Error: " . mysql_error());
-$user = mysql_fetch_array($user_query);
+$user_query = $db->query($user_query) or die("Error: " . mysql_error());
+$user = mysqli_fetch_array($user_query);
 
 	$setid = $user['setid'];
 	$gp = $user['gp'];
@@ -79,8 +79,8 @@ $user = mysql_fetch_array($user_query);
 
 // select buildings items
 $buildings_query = "SELECT * FROM buildings WHERE email='$email' AND pw= '$pw'";
-$buildings_query = mysql_db_query($dbnam, $buildings_query) or die("Error: " . mysql_error());
-$buildings = mysql_fetch_array($buildings_query);
+$buildings_query = $db->query($buildings_query) or die("Error: " . mysql_error());
+$buildings = mysqli_fetch_array($buildings_query);
 
 	$home = $buildings['home'];
 	$barrack = $buildings['barrack'];
@@ -110,8 +110,8 @@ $buildings = mysql_fetch_array($buildings_query);
 
 // select military items
 $military_query = "SELECT * FROM military WHERE email='$email' AND pw= '$pw'";
-$military_query = mysql_db_query($dbnam, $military_query) or die("Error: " . mysql_error());
-$military = mysql_fetch_array($military_query);
+$military_query = $db->query($military_query) or die("Error: " . mysql_error());
+$military = mysqli_fetch_array($military_query);
 
 	## current unit x
 		$civ = $military['civ'];
@@ -176,8 +176,8 @@ $military = mysql_fetch_array($military_query);
 
 //	select explore items
 $explore_query = "SELECT * FROM explore WHERE email='$email' AND pw= '$pw'";
-$explore_query = mysql_db_query($dbnam, $explore_query) or die("Error: " . mysql_error());
-$explore = mysql_fetch_array($explore_query);
+$explore_query = $db->query($explore_query) or die("Error: " . mysql_error());
+$explore = mysqli_fetch_array($explore_query);
 
 	$expland = $explore['expland'];
 	$expmt = $explore['expmt'];
@@ -186,8 +186,8 @@ $explore = mysql_fetch_array($explore_query);
 
 //	select data from return table
 $return_query = "SELECT * FROM returntbl WHERE email='$email' AND pw= '$pw'";
-$return_query = mysql_db_query($dbnam, $return_query) or die("Error: " . mysql_error());
-$return = mysql_fetch_array($return_query);
+$return_query = $db->query($return_query) or die("Error: " . mysql_error());
+$return = mysqli_fetch_array($return_query);
 	## party 1
 		$war1 = $return['war1'];		$WAR_1 = $return['war1'];
 		$wiz1 = $return['wiz1'];			$WIZ_1 = $return['wiz1'];
@@ -221,25 +221,25 @@ $return = mysql_fetch_array($return_query);
 		$irongolem4 = $return['irongolem4'];		$IRONGOLEM_4 = $return['irongolem4'];
 		$time4 = $return['time4'];		$TIME_4 = $return['time4'];
 	## fleets
-		$FLEETS_ = mysql_db_query($dbnam, "SELECT fleets FROM user WHERE userid='$userid'");
-		$_FLEETS = mysql_result($FLEETS_, "_FLEETS");
+		$FLEETS_ = $db->query("SELECT fleets FROM user WHERE userid='$userid'");
+		$_FLEETS = mysqli_field_seek($FLEETS_, "_FLEETS");
 
 //	total all units together
 	$warquery = "SELECT sum(amount) FROM barter WHERE seller='$ename' AND type='Warrior'";
-	$warresult = mysql_db_query($dbnam, $warquery) or die("Error: " . mysql_error());
-	$warcheck = mysql_fetch_array($warresult);
+	$warresult = $db->query($warquery) or die("Error: " . mysql_error());
+	$warcheck = mysqli_fetch_array($warresult);
 
 	$wizquery = "SELECT sum(amount) FROM barter WHERE seller='$ename' AND type='Wizard'";
-	$wizresult = mysql_db_query($dbnam, $wizquery) or die("Error: " . mysql_error());
-	$wizcheck = mysql_fetch_array($wizresult);
+	$wizresult = $db->query($wizquery) or die("Error: " . mysql_error());
+	$wizcheck = mysqli_fetch_array($wizresult);
 
 	$priquery = "SELECT sum(amount) FROM barter WHERE seller='$ename' AND type='Priest'";
-	$priresult = mysql_db_query($dbnam, $priquery) or die("Error: " . mysql_error());
-	$pricheck = mysql_fetch_array($priresult);
+	$priresult = $db->query($priquery) or die("Error: " . mysql_error());
+	$pricheck = mysqli_fetch_array($priresult);
 
 	$archquery = "SELECT sum(amount) FROM barter WHERE seller='$ename' AND type='Archer'";
-	$archresult = mysql_db_query($dbnam, $archquery) or die("Error: " . mysql_error());
-	$archcheck = mysql_fetch_array($archresult);
+	$archresult = $db->query($archquery) or die("Error: " . mysql_error());
+	$archcheck = mysqli_fetch_array($archresult);
 
 	$asages = $sages;
 	$aexplorers = $explorers;
@@ -433,8 +433,8 @@ $amrbutton = "<form type=get action=aconstruct.php><input class=button type=subm
 	$rechourly = $civ * .007;
 	$rechourly = round($rechourly);
 //	max guild id
-	$maxgid = mysql_db_query($dbnam, "SELECT max(gid) FROM guild");
-	$mgid = mysql_result($maxgid,"mgid");
+	$maxgid = $db->query("SELECT max(gid) FROM guild");
+	$mgid = mysqli_field_seek($maxgid,"mgid");
 //	some military values
 	$twarriors = $warriors + $war1 + $war2 + $war3 + $war4;
 	$twizards = $wizards + $wiz1 + $wiz2 + $wiz3 + $wiz4;
@@ -574,9 +574,9 @@ $amrbutton = "<form type=get action=aconstruct.php><input class=button type=subm
 		$dim = number_format($dim);
 
 //	update various user info
-	mysql_query("UPDATE user SET online='1' WHERE email='$email'");
-	mysql_query("UPDATE user SET countdown='336' WHERE email='$email' AND pw='$pw'");
+	$db->query("UPDATE user SET online='1' WHERE email='$email'");
+	$db->query("UPDATE user SET countdown='336' WHERE email='$email' AND pw='$pw'");
 
 } else {
-      header("Location: logout.php?pageid=timeout");
+	header("Location: logout.php?pageid=timeout");
 }

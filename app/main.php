@@ -3,11 +3,11 @@ include("include/igtop.php");
 
 $pageId = $_GET['pageId'];
 
-$set_notice_query = mysql_db_query($dbnam, "SELECT setnotice FROM settlement WHERE setid='$setid'");
-  $setnotice = mysql_fetch_array($set_notice_query);
+$set_notice_query = $db->query("SELECT setnotice FROM settlement WHERE setid='$setid'");
+  $setnotice = mysqli_fetch_array($set_notice_query);
 
-$guild_notice_query = mysql_db_query($dbnam, "SELECT notice FROM guild WHERE gname='$empireguild'");
-  $guildnotice = mysql_fetch_array($guild_notice_query);
+$guild_notice_query = $db->query("SELECT notice FROM guild WHERE gname='$empireguild'");
+  $guildnotice = mysqli_fetch_array($guild_notice_query);
 
 echo"
 <table border=0 cellpadding=2 cellspacing=0 width=100% valign=top>

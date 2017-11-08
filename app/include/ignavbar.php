@@ -8,8 +8,8 @@ include ("include/clock.php");
   if($nno == 0) { $maintitle = "<a href=main.php>Main Menu</a>";  }
   else  { $maintitle = "<b><i><a href=main.php?pageid=news flashtype=0 flashcolor=red id=flashlink>$nno NEWS</a></i></b>";  }
 //  are they a gl?
-    $gresult = mysql_db_query($dbnam, "SELECT owner FROM guild WHERE owner='$userid'");
-      $gnamecheck = mysql_fetch_array($gresult);
+    $gresult = $db->query("SELECT owner FROM guild WHERE owner='$userid'");
+      $gnamecheck = mysqli_fetch_array($gresult);
   if($gnamecheck[0] === $userid)  { $gforum_name = "<a href=gl-forum.php>Forums</a>"; }
   else  { $gforum_name = "<a href=gforums.php>Forums</a>";  }
 //  are they sl?
